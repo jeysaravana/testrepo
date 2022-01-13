@@ -9,6 +9,9 @@ workflows:
             tags:
               only: /^tag-*/
             branches:
+              only:
+                - main
+                - develop
               ignore: /.*/
 
 jobs:
@@ -21,14 +24,12 @@ jobs:
       # git 2.6.0. (Use -stretch for circleci/node containers.)
       - image: cimg/php:7.3
 
-    branches:
-      only:
-        - main
-        - develop
-      # Don't build from a branch with the `-built` suffix, to
-      # prevent endless loops of deploy scripts.
-      ignore:
-        - /^.*-built$/
+    # branches:
+
+    #   # Don't build from a branch with the `-built` suffix, to
+    #   # prevent endless loops of deploy scripts.
+    #   ignore:
+    #     - /^.*-built$/
 
     steps:
       - checkout
