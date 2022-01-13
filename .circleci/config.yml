@@ -1,0 +1,40 @@
+version: 2
+
+workflows:
+  version: 2
+  build_for_tag:
+    jobs:
+      - build:
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              only:
+                - master
+                - develop
+
+jobs:
+  build:
+    docker:
+      # Pick a base image which matches the version of Node you need for
+      # building from https://hub.docker.com/r/circleci/node/tags/
+      #
+      # Note: If using a different container, make sure it contains at least
+      # git 2.6.0. (Use -stretch for circleci/node containers.)
+      - image: cimg/php:7.3
+
+    # branches:
+
+    #   # Don't build from a branch with the `-built` suffix, to
+    #   # prevent endless loops of deploy scripts.
+    #   ignore:
+    #     - /^.*-built$/
+
+    steps:
+      - checkout
+
+      - run:
+          name: composer auth setup
+          command: echo 'build triggered'
+
+
