@@ -1,4 +1,16 @@
 version: 2
+
+workflows:
+  version: 2
+  build_for_tag:
+    jobs:
+      - build:
+          filters:
+            tags:
+              only: /^tag-*/
+            branches:
+              ignore: /.*/
+
 jobs:
   build:
     docker:
@@ -25,12 +37,4 @@ jobs:
           name: composer auth setup
           command: echo 'build triggered'
 
-workflows:
-  version: 2
-  build_for_tag:
-    jobs:
-      - build:
-          filters:
-            tags:
-              only: /^tag-*/
 
