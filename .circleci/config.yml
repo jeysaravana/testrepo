@@ -7,7 +7,7 @@ workflows:
       - build:
           filters:
             tags:
-              only: /^tag-*/
+              only: /^v.*/
             branches:
               ignore: /.*/
 
