@@ -37,4 +37,6 @@ jobs:
           name: composer auth setup
           command: echo 'build triggered'
 
-
+      - deploy:
+          name: Deploy -built branch to github
+          command: bash ./.circleci/deploy.sh
