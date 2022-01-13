@@ -9,7 +9,9 @@ workflows:
             tags:
               only: /^v.*/
             branches:
-              ignore: /.*/
+              only:
+                - master
+                - develop
 
 jobs:
   build:
